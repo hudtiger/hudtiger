@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>跨域测试</title>
+</head>
+
+<body>
+<ul>
+<li>请求路由：http://localhost:8080/fastjson/test</li>
+<li id="res">...</li>
+</ul>
+    <button id="test">测试</button>
+    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $("#test").on("click", function() {
+            $.ajax({
+                "url": "http://localhost:8080/fastjson/test",
+                "type": "get",
+                "dataType": "json",
+                "success": function(data) {
+                    console.log(data);
+                    $('#res').text(JSON.stringify(data));
+                }
+            });
+            $.ajax({
+           	   type: "post",
+           	   dataType:"json",
+           	   contentType: "application/json;charset=utf-8",
+           	   url:"http://localhost:8080/mysql/users/3",
+           	   data:'{"birthday":"2018-03-17","id":6,"password":"jac3","username":"ja2ck"}',
+           	   success: function(msg){
+           	     console.log(msg);
+           	   }
+           	});
+        });
+    });
+    </script>
+</body>
+</html>
